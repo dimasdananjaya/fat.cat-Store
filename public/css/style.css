@@ -1,0 +1,21 @@
+body,html{
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: floralwhite;
+}
+
+/**** product *****/
+#product{
+    margin-top: 4em;
+}
+/**** end product *****/
+
+/**** featured *****/
+#featured{
+    margin-top: 4em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    background-color: #ffe2bc;
+}
+/**** end featured *****/
