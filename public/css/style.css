@@ -2,20 +2,81 @@ body,html{
     overflow-x: hidden;
     margin: 0;
     padding: 0;
-    background-color: floralwhite;
+    background-color: #fff;
 }
 
-/**** product *****/
-#product{
-    margin-top: 4em;
+nav{
+    margin-bottom: 15px;
 }
-/**** end product *****/
+
+/*********global*******/
+.btn-view-all{
+    background-color: #1b262c;
+    color: #fff;
+}
+/********end global****/
 
 /**** featured *****/
 #featured{
     margin-top: 4em;
     padding-top: 2em;
     padding-bottom: 2em;
-    background-color: #ffe2bc;
+    background-color: #1b262c;
+    color: #fff;
+
 }
+
 /**** end featured *****/
+
+/**** newly-arrived *****/
+#newly-arrived{
+    margin-top: 4em;
+    margin-bottom: 4em;
+}
+
+#newly-arrived .card{
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 1em;
+    
+}
+
+#newly-arrived .card a{
+    background-color: #fff;
+    color: #1b262c;
+    border: solid 0.7px #1b262c;
+}
+
+#newly-arrived .card a:hover{
+    background-color: #1b262c;
+    color: #fff;
+    border: solid 0.7px #1b262c;
+}
+/**** end newly-arrived *****/
+
+
+/**** #most-popular *****/
+#most-popular{
+    margin-top: 4em;
+    margin-bottom: 4em;
+}
+
+#most-popular .card{
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 1em;
+ 
+}
+
+#most-popular .card a{
+    background-color: #fff;
+    color: #1b262c;
+    border: solid 0.7px #1b262c;
+}
+
+#most-popular .card a:hover{
+    background-color: #1b262c;
+    color: #fff;
+    border: solid 0.7px #1b262c;
+}
+/**** end newly-arrived *****/
