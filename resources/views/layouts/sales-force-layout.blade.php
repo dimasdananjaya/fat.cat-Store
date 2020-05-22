@@ -149,7 +149,7 @@
     
 
     <script>
-        $(".newly-arrived-carousel").slick({
+        $(".sales-pending-orders-carousel").slick({
                     arrows: true,
                     infinite: false,
                     speed: 150,
@@ -189,7 +189,7 @@
     </script>
 
     <script>
-    $(".most-popular-carousel").slick({
+    $(".sales-completed-orders-carousel").slick({
                 arrows: true,
                 infinite: false,
                 speed: 150,

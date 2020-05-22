@@ -14,13 +14,49 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_user');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('profile_image')->nullable();
+            $table->string('status');
             $table->rememberToken();
             $table->timestamps();
+        });
+
+        Schema::create('products', function (Blueprint $table) {
+            $table->bigIncrements('id_product');
+            $table->string('name');
+            $table->string('type');
+            $table->decimal('price',10,2);
+            $table->string('description');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+
+        Schema::create('orders', function (Blueprint $table) {
+            $table->bigIncrements('id_order');
+            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_product');
+            $table->string('quantity');
+            $table->string('status');
+            $table->decimal('total_price',10,2);
+            $table->rememberToken();
+            $table->timestamps();
+
+            $table->foreign('id_product')->references('id_product')->on('products');
+            $table->foreign('id_user')->references('id_user')->on('users');
+        });
+
+        Schema::create('product_images', function (Blueprint $table) {
+            $table->bigIncrements('id_product_images');
+            $table->unsignedBigInteger('id_product');
+            $table->string('images');
+            $table->rememberToken();
+            $table->timestamps();
+
+            $table->foreign('id_product')->references('id_product')->on('products');
         });
     }
 

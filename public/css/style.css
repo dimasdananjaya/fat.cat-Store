@@ -80,3 +80,53 @@ nav{
     border: solid 0.7px #1b262c;
 }
 /**** end newly-arrived *****/
+
+/**** footer *****/
+footer{
+    background-color: #1b262c;
+    color: #fff;
+    margin-top: 2em;
+}
+/**** end footer *****/
+
+/**** sales-force-page *****/
+#sales-force-page .sales-card{
+    background: rgb(7,121,228);
+    background: linear-gradient(90deg, rgba(7,121,228,1) 11%, rgba(35,148,231,1) 32%, rgba(3,179,245,1) 64%, rgba(0,212,255,1) 100%);
+    color: #ffffff;
+    border-radius: 30px;
+    padding-top: 1em;
+    margin-right: 7px;
+    margin-left: 7px;
+    padding-bottom: 10px;
+}
+
+#sales-force-page .profile-img{
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin-right: 5px;
+    border-radius: 50%;
+    margin-top: 30px;
+}
+
+#sales-force-page .profile-stats-icon{
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+#sales-force-page .stats-text{
+    margin-top: 3px;
+}
+
+#sales-pending-orders{
+    margin-top: 2em;
+}
+
+#sales-pending-orders-carousel{
+    margin-top: 2em;
+}
+
+
+/**** end sales force page *****/

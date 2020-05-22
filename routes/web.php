@@ -20,3 +20,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/sales-force-page', 'RouteController@SalesForcePage')->name('sales-force-page');
