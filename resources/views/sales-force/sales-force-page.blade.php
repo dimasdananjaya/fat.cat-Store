@@ -37,42 +37,214 @@
         <h4>Pending Orders</h4>
         <hr>
         <div class="sales-pending-orders-carousel">
-            <div class="card" style="width: 18rem;">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title"><b>Order Id : </b></h5>
+                </div>
                 <div class="card-body">
-                  <h5 class="card-title"><b>Order Id</b></h5>
-                  <p class="card-text">Product Name : </p>
-                  <p class="card-text">Scrunchies Type 1</p>
-                  <small><p>Qty : 3</p></small>
-                  <p class="card-text">Total Price : </p>
+                  <p class="card-text"><b>Items : </b></p>
+                  <ul>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                  </ul>
+                  <p class="card-text"><b>Total Price : </b></p>
                   <div class="d-flex justify-content-start">
-                    <a href="#" class="btn btn-sm btn-primary">Finish</a>
-                    <a href="#" class="btn btn-sm btn-danger">Cancel</a>
+                    <a href="#" class="btn btn-md btn-orders-finish">Finish</a>
+                    <a href="#" class="btn btn-md btn-orders-cancel">Cancel</a>
                   </div>
-                </div><!--flexbox-->
-              </div><!--end card body-->
+                </div><!--card-body-->
             </div><!--end card-->
-        </div><!-- pending-orders carousel-->
-    </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title"><b>Order Id : </b></h5>
+                </div>
+                <div class="card-body">
+                  <p class="card-text"><b>Items : </b></p>
+                  <ul>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                  </ul>
+                  <p class="card-text"><b>Total Price : </b></p>
+                  <div class="d-flex justify-content-start">
+                    <a href="#" class="btn btn-md btn-orders-finish">Finish</a>
+                    <a href="#" class="btn btn-md btn-orders-cancel">Cancel</a>
+                  </div>
+                </div><!--card-body-->
+            </div><!--end card-->
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title"><b>Order Id : </b></h5>
+                </div>
+                <div class="card-body">
+                  <p class="card-text"><b>Items : </b></p>
+                  <ul>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                  </ul>
+                  <p class="card-text"><b>Total Price : </b></p>
+                  <div class="d-flex justify-content-start">
+                    <a href="#" class="btn btn-md btn-orders-finish">Finish</a>
+                    <a href="#" class="btn btn-md btn-orders-cancel">Cancel</a>
+                  </div>
+                </div><!--card-body-->
+            </div><!--end card-->
+        </div><!--end carousel-->
+    </div><!--end container-->
 </section>
+
+<!-- Button add orders modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-orders-modal">
+    Add Orders
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="add-orders-modal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form  method="POST">
+                @csrf
+            
+                {{-- ... customer name and email fields --}}
+            
+                <div class="card">
+                    <div class="card-header">
+                        Products
+                    </div>
+            
+                    <div class="card-body">
+                        <table class="table" id="products_table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="product0">
+                                    <td>
+
+                                    <td>
+                                        <input type="number" name="quantities[]" class="form-control" value="1" />
+                                    </td>
+                                </tr>
+                                <tr id="product1"></tr>
+                            </tbody>
+                        </table>
+            
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button id="add_row" class="btn btn-default pull-left">+ Add Row</button>
+                                <button id='delete_row' class="pull-right btn btn-danger">- Delete Row</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <input class="btn btn-danger" type="submit">
+                </div>
+            </form>
+        </div><!--end modal content-->
+    </div><!--end modal dialog-->
+</div><!--end modal-->
 
 <section id="sales-completed-orders">
     <div class="container">
         <h4>Completed Orders</h4>
         <hr>
         <div class="sales-completed-orders-carousel">
-            <div class="card" style="width: 18rem;">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title"><b>Order Id : </b></h5>
+                </div>
+                <div class="card-body">                 
+                  <p class="card-text"><b>Items : </b></p>
+                  <ul>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                  </ul> 
+                  <p class="card-text"><b>Total Price : </b></p>
+                </div><!--end card body-->
+                <div class="d-flex justify-content-center">
+                    <a href="#" class="btn completed-badge">Completed</a>
+                </div><!--end flex-->
+            </div><!--end card-->
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title"><b>Order Id : </b></h5>
+                </div>
                 <div class="card-body">
-                  <h5 class="card-title"><b>Order Id</b></h5>
-                  <p class="card-text">Product Name : </p>
-                  <p class="card-text">Scrunchies Type 1</p>
-                  <small><p>Qty : 3</p></small>
-                  <p class="card-text">Total Price : </p>
-                  <div class="d-flex justify-content-start">
-                    <a href="#" class="btn btn-sm btn-primary">Finish</a>
-                    <a href="#" class="btn btn-sm btn-danger">Cancel</a>
-                  </div>
-                </div><!--flexbox-->
-              </div><!--end card body-->
+                  <p class="card-text"><b>Items : </b></p>                 
+                  <ul>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                  </ul>
+                  <p class="card-text"><b>Total Price : </b></p>
+                </div><!--end card body-->
+                <div class="d-flex justify-content-center">
+                    <a href="#" class="btn completed-badge">Completed</a>
+                </div><!--end flex-->
+            </div><!--end card-->
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title"><b>Order Id : </b></h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><b>Items : </b></p>                 
+                  <ul>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                      <li>Product 1</li>
+                      <small><p>Qty : 3</p></small>
+                      <small><p>Price : Rp.10.000</p></small>
+                  </ul>
+                  <p class="card-text"><b>Total Price : </b></p>
+                </div><!--end card body-->
+                <div class="d-flex justify-content-center">
+                    <a href="#" class="btn completed-badge">Completed</a>
+                </div><!--end flex-->
             </div><!--end card-->
         </div><!-- pending-orders carousel-->
     </div>

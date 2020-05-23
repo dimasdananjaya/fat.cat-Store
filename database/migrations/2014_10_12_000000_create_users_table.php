@@ -38,16 +38,28 @@ class CreateUsersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id_order');
             $table->unsignedBigInteger('id_user');
-            $table->unsignedBigInteger('id_product');
+            $table->string('nama_pembeli');
             $table->string('quantity');
-            $table->string('status');
             $table->decimal('total_price',10,2);
+            $table->string('status');
             $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('id_product')->references('id_product')->on('products');
             $table->foreign('id_user')->references('id_user')->on('users');
         });
+
+        Schema::create('orders_product', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_order');
+            $table->unsignedBigInteger('id_product');
+            $table->string('quantity');
+            $table->rememberToken();
+            $table->timestamps();
+
+            $table->foreign('id_product')->references('id_product')->on('products');
+            $table->foreign('id_order')->references('id_order')->on('orders');
+        });
+
 
         Schema::create('product_images', function (Blueprint $table) {
             $table->bigIncrements('id_product_images');

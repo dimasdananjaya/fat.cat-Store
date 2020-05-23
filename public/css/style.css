@@ -124,9 +124,65 @@ footer{
     margin-top: 2em;
 }
 
+#sales-pending-orders .card-header{
+    background-color: #162447;
+    color: #ffffff;
+    border-radius: 20px 20px 0px 0px;
+    border: none;
+}
+
+#sales-pending-orders .card{
+    border-radius: 20px;
+    color: #fff;
+    background-color: #1f4068;
+    border: none;
+    margin-left: 0.7em;
+    margin-top: 1em;
+    margin-right: 0.7em;
+}
+
 #sales-pending-orders-carousel{
     margin-top: 2em;
 }
 
+.btn-orders-finish{
+    border-radius: 30px;
+    background-color: #6886c5;
+    color: #fff;
+}
+
+.btn-orders-cancel{
+    background-color: #e43f5a;
+    color: #fff;
+    border-radius: 20px;
+    margin-left: 1em;
+}
+
+#sales-completed-orders-carousel{
+    margin-top: 2em;
+}
+
+#sales-completed-orders .card-header{
+    background-color: #120136;
+    color: #fff;
+    border-radius: 20px 20px 0px 0px;
+}
+
+#sales-completed-orders .card{
+    border-radius: 20px;
+    color: #fff;
+    background-color: #035aa6;
+    border: none;
+    margin-left: 0.7em;
+    margin-top: 1em;
+    margin-right: 0.7em;
+    padding-bottom: 1.7em;
+}
+
+.completed-badge{
+    border-radius: 20px;
+    background-color: #fcbf1e;
+    color: #fff;
+}
 
 /**** end sales force page *****/
