@@ -3,29 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\OrdersModel;
-use App\ProductModel;
+use App\Orders;
+use Auth;
+
 
 class OrderController extends Controller
 {
-    public function create()
-    {
-        $products = ProductModel::all();
-        return view('admin.orders.create', compact('products'));
-    }
 
-    public function store(StoreOrderRequest $request)
+    public function store(Request $request)
     {
-        $order = OrdersModel::create($request->all());
+
+        $order = Orders::create([
+            'id_user'       => $request->input('id_user'),
+            'nama_pembeli'   => $request->input('nama_pembeli'),
+            'kontak_pembeli'   => $request->input('kontak_pembeli'),
+            'total_price'           => $request->input('total_price'),
+            'status'           => 'pending',
+
+        ]);
 
         $products = $request->input('products', []);
         $quantities = $request->input('quantities', []);
         for ($product=0; $product < count($products); $product++) {
             if ($products[$product] != '') {
-                $order->products()->attach($products[$product], ['quantity' => $quantities[$product]]);
+                $order->products()->attach($products[$product],['quantity' => $quantities[$product]]);
             }
         }
-
-        return redirect()->route('admin.orders.index');
+    
+        return back();
     }
 }

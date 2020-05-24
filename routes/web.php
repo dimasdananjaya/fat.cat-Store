@@ -21,3 +21,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/sales-force-page', 'RouteController@SalesForcePage')->name('sales-force-page');
+Route::post('/sales-force-page/add-orders', 'OrderController@store')->name('add-order');

@@ -116,17 +116,33 @@
 </section>
 
 <!-- Button add orders modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-orders-modal">
-    Add Orders
-</button>
+<div class="container">
+    <div class="d-flex justify-content-end">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-orders-modal">
+        Add Orders
+    </button>
+    </div>
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="add-orders-modal" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog" role="document">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Order</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         <div class="modal-content">
-            <form  method="POST">
+            <form action="{{ route('add-order') }}"  method="POST">
                 @csrf
-            
+                <label>Nama Pemesan :</label>
+                {{ Form::text('nama_pembeli','',['class' => 'form-control form-group'])}}
+                <label>Kontak Pemesan :</label>
+                {{ Form::text('kontak_pembeli','',['class' => 'form-control form-group'])}}
+                {{Form::hidden('id_user', Auth::user()->id_user) }}
+                {{Form::hidden('status', 'pending') }}
                 {{-- ... customer name and email fields --}}
             
                 <div class="card">
@@ -145,9 +161,17 @@
                             <tbody>
                                 <tr id="product0">
                                     <td>
-
+                                        <select name="products[]" class="form-control form-group">
+                                            <option value="">-- choose product --</option>
+                                            @foreach ($products as $product)
+                                                <option value="{{ $product->id_product }}">
+                                                    {{ $product->name }} (${{ number_format($product->price, 2) }})
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </td>
                                     <td>
-                                        <input type="number" name="quantities[]" class="form-control" value="1" />
+                                        <input type="number" name="quantities[]" class="form-control" />
                                     </td>
                                 </tr>
                                 <tr id="product1"></tr>
@@ -156,16 +180,21 @@
             
                         <div class="row">
                             <div class="col-md-12">
-                                <button id="add_row" class="btn btn-default pull-left">+ Add Row</button>
+                                <button id="add_row" class="btn btn-success pull-left">+ Add Row</button>
                                 <button id='delete_row' class="pull-right btn btn-danger">- Delete Row</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <label>Total Price :</label>
+                {{ Form::number('total_price','',['class' => 'form-control form-group'])}}
                 <div>
                     <input class="btn btn-danger" type="submit">
                 </div>
             </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div><!--end modal content-->
     </div><!--end modal dialog-->
 </div><!--end modal-->

@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('profile_image')->nullable();
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -35,32 +35,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('orders', function (Blueprint $table) {
-            $table->bigIncrements('id_order');
-            $table->unsignedBigInteger('id_user');
-            $table->string('nama_pembeli');
-            $table->string('quantity');
-            $table->decimal('total_price',10,2);
-            $table->string('status');
-            $table->rememberToken();
-            $table->timestamps();
-
-            $table->foreign('id_product')->references('id_product')->on('products');
-            $table->foreign('id_user')->references('id_user')->on('users');
-        });
-
-        Schema::create('orders_product', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_order');
-            $table->unsignedBigInteger('id_product');
-            $table->string('quantity');
-            $table->rememberToken();
-            $table->timestamps();
-
-            $table->foreign('id_product')->references('id_product')->on('products');
-            $table->foreign('id_order')->references('id_order')->on('orders');
-        });
-
-
+        
         Schema::create('product_images', function (Blueprint $table) {
             $table->bigIncrements('id_product_images');
             $table->unsignedBigInteger('id_product');
@@ -70,6 +45,31 @@ class CreateUsersTable extends Migration
 
             $table->foreign('id_product')->references('id_product')->on('products');
         });
+
+        Schema::create('orders', function (Blueprint $table) {
+            $table->bigIncrements('id_order');
+            $table->unsignedBigInteger('id_user');
+            $table->string('nama_pembeli');
+            $table->string('kontak_pembeli');
+
+            $table->decimal('total_price',10,2);
+            $table->string('status');
+            $table->rememberToken();
+            $table->timestamps();
+
+            $table->foreign('id_user')->references('id_user')->on('users');
+        });
+
+
+        Schema::create('orders_product', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_order');
+            $table->foreign('id_order')->references('id_order')->on('orders');
+            $table->unsignedBigInteger('id_product');
+            $table->foreign('id_product')->references('id_product')->on('products');
+            $table->integer('quantity');
+        });
+
+
     }
 
     /**
