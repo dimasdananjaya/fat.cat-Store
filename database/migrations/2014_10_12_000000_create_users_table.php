@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id_product');
             $table->string('name');
             $table->string('type');
-            $table->decimal('price',10,2);
+            $table->decimal('price',20,2);
             $table->string('description');
             $table->rememberToken();
             $table->timestamps();
@@ -52,7 +52,7 @@ class CreateUsersTable extends Migration
             $table->string('nama_pembeli');
             $table->string('kontak_pembeli');
 
-            $table->decimal('total_price',10,2);
+            $table->decimal('total_price',20,2);
             $table->string('status');
             $table->rememberToken();
             $table->timestamps();
@@ -61,11 +61,11 @@ class CreateUsersTable extends Migration
         });
 
 
-        Schema::create('orders_product', function (Blueprint $table) {
+        Schema::create('orders_products', function (Blueprint $table) {
             $table->unsignedBigInteger('id_order');
-            $table->foreign('id_order')->references('id_order')->on('orders');
+            $table->foreign('id_order')->references('id_order')->on('orders')->onDelete('cascade');
             $table->unsignedBigInteger('id_product');
-            $table->foreign('id_product')->references('id_product')->on('products');
+            $table->foreign('id_product')->references('id_product')->on('products')->onDelete('cascade');
             $table->integer('quantity');
         });
 

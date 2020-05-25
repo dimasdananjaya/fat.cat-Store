@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Orders;
 use Auth;
+Use Alert;
 
 
 class OrderController extends Controller
@@ -14,11 +15,11 @@ class OrderController extends Controller
     {
 
         $order = Orders::create([
-            'id_user'       => $request->input('id_user'),
+            'id_user'        => $request->input('id_user'),
             'nama_pembeli'   => $request->input('nama_pembeli'),
-            'kontak_pembeli'   => $request->input('kontak_pembeli'),
-            'total_price'           => $request->input('total_price'),
-            'status'           => 'pending',
+            'kontak_pembeli' => $request->input('kontak_pembeli'),
+            'total_price'    => $request->input('total_price'),
+            'status'         => 'pending',
 
         ]);
 
@@ -29,7 +30,16 @@ class OrderController extends Controller
                 $order->products()->attach($products[$product],['quantity' => $quantities[$product]]);
             }
         }
-    
+        
+        Alert::success('Success', 'Order Disimpan');
+        return back();
+
+    }
+
+    public function destroy($id)
+    {
+        Orders::find($id)->delete();
+        Alert::success('Order Berhasil Dihapus!', 'Kembali');
         return back();
     }
 }

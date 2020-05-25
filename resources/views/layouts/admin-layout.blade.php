@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" type="image/png" src="images/logo/fat-cat-logo.png">
+    <link rel="icon" type="image/png" src="{{URL::asset('/images/logo/fat-cat-logo.png')}}">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

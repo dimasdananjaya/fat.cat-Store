@@ -10,18 +10,18 @@
             <div class="sales-card col-lg-4 text-left">
                 <div class="fdb-box p-0">
                     <div class="d-flex justify-content-center">
-                        <img alt="image" class="img-fluid profile-img" src="images/sales-force/hanna.jpg">
+                        <img alt="image" class="img-fluid profile-img" src="{{URL::asset('/images/sales-force/hanna.jpg')}}">
                     </div>        
                     <div class="text-center content p-3">
                         <h5><strong>Hanna Dyarta</strong></h5>
                         <p>Sales</p>
                     </div>
                     <div class="d-flex justify-content-start">
-                        <img class="profile-stats-icon" src="images/logo/money.svg" alt="...">
+                        <img class="profile-stats-icon" src="{{URL::asset('/images/logo/money.svg')}}" alt="...">
                         <p class="stats-text">Total Profits : </p>
                     </div>
                     <div class="d-flex justify-content-start">
-                        <img class="profile-stats-icon" src="images/logo/money.svg" alt="...">
+                        <img class="profile-stats-icon" src="{{URL::asset('/images/logo/money.svg')}}" alt="...">
                         <p class="stats-text">Orders Completed : </p>
                     </div>
                     
@@ -37,80 +37,59 @@
         <h4>Pending Orders</h4>
         <hr>
         <div class="sales-pending-orders-carousel">
+            @foreach($orders_products as $ord)
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title"><b>Order Id : </b></h5>
+                    <h5 class="card-title"><b>Order Id : {{$ord->id_order}} </b></h5>
                 </div>
                 <div class="card-body">
+                    <p>Pembeli : {{$ord->nama_pembeli}}</p>
+                    <p>Kontak : {{$ord->kontak_pembeli}}</p>
                   <p class="card-text"><b>Items : </b></p>
                   <ul>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
+                    @foreach($ord->products as $orp)
+                        <li>{{$orp->name}} x {{$orp->pivot->quantity}}</li>
+                    @endforeach
                   </ul>
-                  <p class="card-text"><b>Total Price : </b></p>
+                  <p class="card-text"><b>Total Price : Rp. {{ number_format($ord->total_price, 0, ',', '.') }}</b></p>
                   <div class="d-flex justify-content-start">
                     <a href="#" class="btn btn-md btn-orders-finish">Finish</a>
-                    <a href="#" class="btn btn-md btn-orders-cancel">Cancel</a>
-                  </div>
+                    {!!Form::open(['action'=>['OrderController@destroy', $ord->id_order], 'method'=>'POST','id'=>'cancel-button'.$ord->id_order])!!}
+                        {{Form::hidden('_method', 'DELETE')}}       
+                        {{Form::submit('Cancel',['class'=>'btn btn-danger btn-orders-cancel'])}}
+                    {!!Form::close()!!}
+                    <script>
+                            document.querySelector('#cancel-button{{$ord->id_order}}').addEventListener('click', function(e){
+                            var form =this;
+                            e.preventDefault();
+                            swal({
+                            title: "Hapus data order : {{$ord->id_order}}",
+                            text: "Klik Hapus untuk menghapus data !",
+                            type: 'warning',
+                            buttons:{
+                                cancel:"Batal",
+                                confirm:{
+                                    text:"Hapus",
+                                    value:"catch",
+                                }
+                            }
+                            }).then((value) => {
+                            switch(value){
+                                case "catch":
+                                form.submit();
+                                break;
+                        
+                                default:
+                                
+                                    break;
+                            }
+                            })
+                        });
+                    </script>
+                  </div><!--end flex-->
                 </div><!--card-body-->
             </div><!--end card-->
-
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title"><b>Order Id : </b></h5>
-                </div>
-                <div class="card-body">
-                  <p class="card-text"><b>Items : </b></p>
-                  <ul>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
-                  </ul>
-                  <p class="card-text"><b>Total Price : </b></p>
-                  <div class="d-flex justify-content-start">
-                    <a href="#" class="btn btn-md btn-orders-finish">Finish</a>
-                    <a href="#" class="btn btn-md btn-orders-cancel">Cancel</a>
-                  </div>
-                </div><!--card-body-->
-            </div><!--end card-->
-
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title"><b>Order Id : </b></h5>
-                </div>
-                <div class="card-body">
-                  <p class="card-text"><b>Items : </b></p>
-                  <ul>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
-                  </ul>
-                  <p class="card-text"><b>Total Price : </b></p>
-                  <div class="d-flex justify-content-start">
-                    <a href="#" class="btn btn-md btn-orders-finish">Finish</a>
-                    <a href="#" class="btn btn-md btn-orders-cancel">Cancel</a>
-                  </div>
-                </div><!--card-body-->
-            </div><!--end card-->
+            @endforeach
         </div><!--end carousel-->
     </div><!--end container-->
 </section>

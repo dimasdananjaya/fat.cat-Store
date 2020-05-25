@@ -20,5 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/sales-force-page', 'RouteController@SalesForcePage')->name('sales-force-page');
-Route::post('/sales-force-page/add-orders', 'OrderController@store')->name('add-order');
+
+
+Route::group(['middleware' => ['auth'], 'prefix' => 'sales-force-page'], function () {
+    Route::get('/home', 'SalesForceController@SalesForcePage')->name('sales-force-page');
+    Route::post('/add-orders', 'OrderController@store')->name('add-order');
+    Route::delete('/destroy-orders/{order}', 'OrderController@destroy')->name('destroy-order');
+});

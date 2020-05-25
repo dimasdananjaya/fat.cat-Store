@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" type="image/png" src="images/logo/fat-cat-logo.png">
+    <link rel="icon" type="image/png" src="{{URL::asset('/images/logo/fat-cat-logo.png')}}">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -49,11 +49,11 @@
     
 </head>
 <body>
-    <div id="app">
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm no-gutter">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img height="50" width="70"  src="images/logo/fat-cat-logo.png" alt="image">
+                    <img height="50" width="70"  src="{{URL::asset('/images/logo/fat-cat-logo.png')}}" alt="image">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -96,6 +96,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('sales-force-page') }}">Dashboard Admin</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -105,8 +106,10 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                                    
                                 </div>
                             </li>
+                       
                         @endguest
                     </ul>
                 </div>
@@ -120,7 +123,7 @@
             <div class="container">
                 <div class="row text-center align-items-center">
                 <div class="col-12 col-sm-6 col-md-4 text-sm-left">
-                    <img alt="image" src="images/logo/fat-cat-logo.png" height="40">
+                    <img alt="image" src="{{URL::asset('/images/logo/fat-cat-logo.png')}}" height="40">
                 </div>
 
                 <div class="col-12 col-sm-6 col-md-4 mt-4 mt-sm-0 text-center text-sm-right text-md-center">
@@ -136,7 +139,10 @@
                 </div>
             </div>
         </footer>
-    </div>
+
+
+    @include('sweetalert::alert')
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
     <!-- Optional JavaScript -->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
