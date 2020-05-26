@@ -12,7 +12,7 @@ class Orders extends Model
         'nama_pembeli',
         'kontak_pembeli',
         'total_price',
-        'status',
+        'sts',
     ];
     public $timestamps='true';
 

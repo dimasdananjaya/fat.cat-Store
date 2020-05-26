@@ -53,7 +53,38 @@
                   </ul>
                   <p class="card-text"><b>Total Price : Rp. {{ number_format($ord->total_price, 0, ',', '.') }}</b></p>
                   <div class="d-flex justify-content-start">
-                    <a href="#" class="btn btn-md btn-orders-finish">Finish</a>
+                    {!!Form::open(['action'=>['OrderController@setCompleted', $ord->id_order], 'method'=>'PUT','id'=>'finish-button'.$ord->id_order])!!}       
+                    {{Form::hidden('_method','PUT')}}
+                        {{Form::submit('Finish',['class'=>'btn btn-danger btn-orders-cancel'])}}
+                    {!!Form::close()!!}
+                    <script>
+                            document.querySelector('#finish-button{{$ord->id_order}}').addEventListener('click', function(e){
+                            var form =this;
+                            e.preventDefault();
+                            swal({
+                            title: "Selesaikan data order : {{$ord->id_order}} ?",
+                            text: "Selesaikan Pesanan Ini ?",
+                            type: 'warning',
+                            buttons:{
+                                cancel:"Batal",
+                                confirm:{
+                                    text:"Selesai",
+                                    value:"catch",
+                                }
+                            }
+                            }).then((value) => {
+                            switch(value){
+                                case "catch":
+                                form.submit();
+                                break;
+                        
+                                default:
+                                
+                                    break;
+                            }
+                            })
+                        });
+                    </script>
                     {!!Form::open(['action'=>['OrderController@destroy', $ord->id_order], 'method'=>'POST','id'=>'cancel-button'.$ord->id_order])!!}
                         {{Form::hidden('_method', 'DELETE')}}       
                         {{Form::submit('Cancel',['class'=>'btn btn-danger btn-orders-cancel'])}}
@@ -183,77 +214,27 @@
         <h4>Completed Orders</h4>
         <hr>
         <div class="sales-completed-orders-carousel">
+            @foreach($orders_completed as $ordc)
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title"><b>Order Id : </b></h5>
+                    <h5 class="card-title"><b>Order Id : {{$ordc->id_order}} </b></h5>
                 </div>
-                <div class="card-body">                 
+                <div class="card-body">
+                    <p>Pembeli : {{$ordc->nama_pembeli}}</p>
+                    <p>Kontak : {{$ordc->kontak_pembeli}}</p>
                   <p class="card-text"><b>Items : </b></p>
                   <ul>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
-                  </ul> 
-                  <p class="card-text"><b>Total Price : </b></p>
-                </div><!--end card body-->
-                <div class="d-flex justify-content-center">
-                    <a href="#" class="btn completed-badge">Completed</a>
-                </div><!--end flex-->
-            </div><!--end card-->
-
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title"><b>Order Id : </b></h5>
-                </div>
-                <div class="card-body">
-                  <p class="card-text"><b>Items : </b></p>                 
-                  <ul>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
+                    @foreach($ordc->products as $orpc)
+                        <li>{{$orpc->name}} x {{$orpc->pivot->quantity}}</li>
+                    @endforeach
                   </ul>
-                  <p class="card-text"><b>Total Price : </b></p>
-                </div><!--end card body-->
-                <div class="d-flex justify-content-center">
+                  <p class="card-text"><b>Total Price : Rp. {{ number_format($ordc->total_price, 0, ',', '.') }}</b></p>
+                  <div class="d-flex justify-content-center">
                     <a href="#" class="btn completed-badge">Completed</a>
-                </div><!--end flex-->
+                  </div><!--end flex-->
+                </div><!--card-body-->
             </div><!--end card-->
-
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title"><b>Order Id : </b></h5>
-                </div>
-                <div class="card-body">
-                    <p class="card-text"><b>Items : </b></p>                 
-                  <ul>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
-                      <li>Product 1</li>
-                      <small><p>Qty : 3</p></small>
-                      <small><p>Price : Rp.10.000</p></small>
-                  </ul>
-                  <p class="card-text"><b>Total Price : </b></p>
-                </div><!--end card body-->
-                <div class="d-flex justify-content-center">
-                    <a href="#" class="btn completed-badge">Completed</a>
-                </div><!--end flex-->
-            </div><!--end card-->
+            @endforeach
         </div><!-- pending-orders carousel-->
     </div>
 </section>

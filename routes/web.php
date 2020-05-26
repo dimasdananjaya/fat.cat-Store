@@ -26,4 +26,5 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'sales-force-page'], functio
     Route::get('/home', 'SalesForceController@SalesForcePage')->name('sales-force-page');
     Route::post('/add-orders', 'OrderController@store')->name('add-order');
     Route::delete('/destroy-orders/{order}', 'OrderController@destroy')->name('destroy-order');
+    Route::put('/completed-orders/{order}', 'OrderController@setCompleted')->name('completed-order');
 });

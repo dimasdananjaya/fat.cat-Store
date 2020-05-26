@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Orders;
 use Auth;
 Use Alert;
-
+use DB;
 
 class OrderController extends Controller
 {
@@ -19,7 +19,7 @@ class OrderController extends Controller
             'nama_pembeli'   => $request->input('nama_pembeli'),
             'kontak_pembeli' => $request->input('kontak_pembeli'),
             'total_price'    => $request->input('total_price'),
-            'status'         => 'pending',
+            'sts'         => 'pending',
 
         ]);
 
@@ -34,6 +34,16 @@ class OrderController extends Controller
         Alert::success('Success', 'Order Disimpan');
         return back();
 
+    }
+
+    public function setCompleted($id)
+    {
+        DB::select(DB::raw(" 
+        UPDATE orders SET sts='completed' 
+        WHERE id_order=$id"
+        ));
+        Alert::success('Order Selesai!', 'Kembali');
+        return back();
     }
 
     public function destroy($id)
