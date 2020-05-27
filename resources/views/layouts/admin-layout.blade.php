@@ -46,14 +46,13 @@
     <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" defer></script>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     -->
-    
 </head>
 <body>
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm no-gutter">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img height="50" width="70"  src="images/logo/fat-cat-logo.png" alt="image">
+                    <img height="50" width="70"  src="{{URL::asset('/images/logo/fat-cat-logo.png')}}" alt="image">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -120,7 +119,7 @@
             <div class="container">
                 <div class="row text-center align-items-center">
                 <div class="col-12 col-sm-6 col-md-4 text-sm-left">
-                    <img alt="image" src="images/logo/fat-cat-logo.png" height="40">
+                    <img alt="image" src="{{URL::asset('/images/logo/fat-cat-logo.png')}}" height="40">
                 </div>
 
                 <div class="col-12 col-sm-6 col-md-4 mt-4 mt-sm-0 text-center text-sm-right text-md-center">
