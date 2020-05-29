@@ -10,7 +10,7 @@
             <div class="sales-card col-lg-4 text-left">
                 <div class="fdb-box p-0">
                     <div class="d-flex justify-content-center">
-                        <img alt="image" class="img-fluid profile-img" src="{{URL::asset('Auth::user()->profile_image')}}">
+                        <img alt="image" class="img-fluid profile-img" src="/images/profile/{{ Auth::user()->profile_image }}">
                     </div>
                     <div class="d-flex justify-content-center profil-img">
                         <!-- Button trigger modal -->
@@ -29,9 +29,9 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                {!!Form::open(['action'=>'SalesForceController@updateProfileImage', 'method'=>'POST'])!!}       
+                                {!!Form::open(['action'=>'SalesForceController@updateProfileImage', 'method'=>'POST', 'enctype'=>'multipart/form-data'])!!} <!--gunakan enctype-->       
                                     <input type="hidden" name="id_user" value="{{Auth::user()->id_user}}">
-                                    <input id="profile_image" type="file" class="form-group" name="profile_image">
+                                    <input  type="file" class="form-control" name="profile_image">
                                     {{Form::submit('Save',['class'=>'btn btn-primary btn-orders-cancel'])}}
                                 {!!Form::close()!!}
                             </div>
@@ -40,7 +40,7 @@
                         </div>
                     </div>        
                     <div class="text-center content p-3">
-                        <h5><strong>Hanna Dyarta</strong></h5>
+                        <h5><strong>{{Auth::user()->name}}</strong></h5>
                         <p>Sales</p>
                     </div>
                     <div class="d-flex justify-content-start">

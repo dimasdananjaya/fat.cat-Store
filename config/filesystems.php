@@ -53,7 +53,7 @@ return [
             'root'   => public_path() . '/images',
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
-        ],
+         ],
 
         's3' => [
             'driver' => 's3',

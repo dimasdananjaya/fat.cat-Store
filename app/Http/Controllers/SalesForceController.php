@@ -9,6 +9,8 @@ use App\Products;
 use App\Orders;
 use Auth;
 use DB;
+use Image;
+use Alert;
 
 
 
@@ -38,29 +40,25 @@ class SalesForceController extends Controller
 
     public function updateProfileImage(Request $request){
 
-        $id_user=Auth::user()->id_user;
-        $user=User::find($id_user);
+
         $this->validate($request, [
             'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'id_user' => 'required'
         ]);
 
-        if ($request->hasFile('profile_image')) {
-            
-
-            $image = $request->file('profile_image');
-            $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/images/profile/');
-            $image->move($destinationPath, $name);
-            $user->profile_image=$name;
+        if($request->hasFile('profile_image')){
+            $profile_image = $request->file('profile_image');
+            $filename = time() . '.' . $profile_image->getClientOriginalExtension();
+            Image::make($profile_image)->resize(300, 300)->save( public_path('/images/profile/' . $filename ) );
+            $user = Auth::user();
+            $user->profile_image = $filename;
             $user->save();
-    
-            Alert::success('Profile Diupdate!', 'Kembali');
-            return view('sales-force.sales-force-page',compact('products','orders_products','orders_completed'));
+            Alert::success('Profile Diupdate !', 'Kembali');
+            return back();
         }
         else{
             Alert::failed('Gagal !', 'Kembali');
-            return view('sales-force.sales-force-page',compact('products','orders_products','orders_completed'));
+            return back();
         }
 
     }
