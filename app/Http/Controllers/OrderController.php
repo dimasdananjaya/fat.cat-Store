@@ -17,6 +17,7 @@ class OrderController extends Controller
         $order = Orders::create([
             'id_user'        => $request->input('id_user'),
             'nama_pembeli'   => $request->input('nama_pembeli'),
+            'alamat_pengiriman'   => $request->input('alamat_pengiriman'),
             'kontak_pembeli' => $request->input('kontak_pembeli'),
             'total_price'    => $request->input('total_price'),
             'sts'         => 'pending',

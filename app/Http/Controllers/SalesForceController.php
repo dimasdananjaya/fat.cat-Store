@@ -28,14 +28,15 @@ class SalesForceController extends Controller
     {
         //get products for adding orders
         $id_user = Auth::user()->id_user;
-        $products = Products::all();
-        $orders_id=DB::table('orders')->select('id_order')->where('id_user','=',$id_user)->first();
-        $orders_products=Orders::with('products')->where('id_user', '=', $id_user)->where('sts','=','pending')->get();
-        $orders_completed=Orders::with('products')->where('id_user', '=', $id_user)->where('sts','=','completed')->get();
-  
+        $total_sales = DB::select( DB::raw("SELECT sum(total_price) as 'total_sales' FROM orders WHERE sts='completed' AND id_user=$id_user") );
+        $total_orders_completed = DB::select( DB::raw("SELECT count(id_order) as 'orders_completed' FROM orders WHERE sts='completed' and id_user=$id_user") );
 
-        
-        return view('sales-force.sales-force-page',compact('products','orders_products','orders_completed'));
+        $products = Products::all()->sortBy('name');
+        $orders_id=DB::table('orders')->select('id_order')->where('id_user','=',$id_user)->first();
+        $orders_pending=Orders::with('products')->where('id_user', '=', $id_user)->where('sts','=','pending')->get();
+        $orders_completed=Orders::with('products')->where('id_user', '=', $id_user)->where('sts','=','completed')->orderBy('updated_at','DESC')->get();
+  
+        return view('sales-force.sales-force-page',compact('products','orders_pending','orders_completed','total_sales','total_orders_completed'));
     }
 
     public function updateProfileImage(Request $request){

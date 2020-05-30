@@ -10,6 +10,7 @@ class Orders extends Model
     protected $fillable = [
         'id_user',
         'nama_pembeli',
+        'alamat_pengiriman',
         'kontak_pembeli',
         'total_price',
         'sts',
