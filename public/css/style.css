@@ -191,3 +191,15 @@ footer{
 }
 
 /**** end sales force page *****/
+
+/**** admin page *****/
+
+
+
+.btn-add-product{
+    border-radius: 30px;
+    background-color: cornflowerblue;
+    border: none;
+    margin-bottom: 2em;
+}
+/**** end admin page *****/

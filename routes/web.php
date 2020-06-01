@@ -23,14 +23,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'sales-force-page'], function () {
-    Route::get('/home', 'SalesForceController@SalesForcePage')->middleware('auth')->name('sales-force-page');
-    Route::post('/add-orders', 'OrderController@store')->middleware('auth')->name('add-order');
-    Route::delete('/destroy-orders/{order}', 'OrderController@destroy')->middleware('auth')->name('destroy-order');
-    Route::put('/completed-orders/{order}', 'OrderController@setCompleted')->middleware('auth')->name('completed-order');
+    Route::get('/home', 'SalesForceController@SalesForcePage')->middleware('auth')->name('sales.force.page');
+    Route::post('/add-orders', 'OrderController@store')->middleware('auth')->name('add.order');
+    Route::delete('/destroy-orders/{order}', 'OrderController@destroy')->middleware('auth')->name('destroy.order');
+    Route::put('/completed-orders/{order}', 'OrderController@setCompleted')->middleware('auth')->name('completed.order');
     Route::post('/profile/update', 'SalesForceController@updateProfileImage')->middleware('auth')->name('profile.update');
 });
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('/products', 'ProductsController@index')->name('products');
+    Route::post('/products/addProduct', 'ProductsController@addProduct')->name('add.products');
 
 });

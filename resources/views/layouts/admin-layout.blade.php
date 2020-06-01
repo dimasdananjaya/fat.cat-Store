@@ -40,12 +40,12 @@
     <!--jquery ui-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" defer>
 
-    <!--datatables
+
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" defer></script>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-    -->
+
 </head>
 <body>
 
@@ -185,46 +185,6 @@
                     ]
                     });
         
-    </script>
-
-    <script>
-    $(".most-popular-carousel").slick({
-                arrows: true,
-                infinite: false,
-                speed: 150,
-                dots: true,
-                autoplay: true,
-                autoplaySpeed: 3000,
-                slidesToShow: 4,
-                slidesToScroll: 3,
-                responsive: [{
-                    breakpoint: 1024,
-                    settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    infinite: true,
-                    arrows: true
-                    }
-                }, {
-                    breakpoint: 600,
-                    settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    arrows: true
-                    }
-                }, {
-                    breakpoint: 480,
-                    settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    arrows: true
-                    }
-                } // You can unslick at a given breakpoint now by adding:
-                // settings: "unslick"
-                // instead of a settings object
-                ]
-                });
-    
     </script>
 </body>
 </html>
